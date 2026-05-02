@@ -1,0 +1,879 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex,nofollow" />
+<title>Sparkline Residential — Seminole County's Trusted Cleaning Service</title>
+<meta name="description" content="Licensed, insured, Google-guaranteed residential cleaning across Lake Mary, Sanford, Oviedo, Winter Springs and all of Seminole County, FL. Instant quote in 60 seconds." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: {
+        serif: ['Fraunces', 'Georgia', 'serif'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        display: ['Space Grotesk', 'Inter', 'sans-serif'],
+        mono: ['JetBrains Mono', 'monospace'],
+      },
+      colors: {
+        cream: '#F5F1EA',
+        sage: '#5C7A6B',
+        sageDark: '#3F5A4D',
+        ink: '#1F2A2A',
+        claret: '#8B3A3A',
+        navy: '#0A1628',
+        navyDeep: '#050D18',
+        mint: '#00E5A0',
+        frost: '#E8F4F0',
+        sky: '#0EA5E9',
+      }
+    }
+  }
+}
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { transition: background 0.4s ease; }
+  body[data-variant="1"] .v1 { display: block; }
+  body[data-variant="1"] .v2, body[data-variant="1"] .v3 { display: none; }
+  body[data-variant="2"] .v2 { display: block; }
+  body[data-variant="2"] .v1, body[data-variant="2"] .v3 { display: none; }
+  body[data-variant="3"] .v3 { display: block; }
+  body[data-variant="3"] .v1, body[data-variant="3"] .v2 { display: none; }
+
+  body[data-variant="1"] { background: #F5F1EA; }
+  body[data-variant="2"] { background: #050D18; }
+  body[data-variant="3"] { background: #FFFFFF; }
+
+  .grain { position: fixed; inset: 0; pointer-events: none; opacity: 0.06; z-index: 1; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.7'/></svg>"); }
+
+  .v2-orb { position: absolute; border-radius: 9999px; filter: blur(80px); opacity: 0.5; pointer-events: none; }
+
+  @keyframes kenburns { 0% { transform: scale(1); } 100% { transform: scale(1.12); } }
+  .kenburns { animation: kenburns 22s ease-in-out infinite alternate; }
+
+  @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+  .marquee { animation: marquee 38s linear infinite; }
+
+  .skew-strip { position: relative; display: inline-block; }
+  .skew-strip::before { content: ''; position: absolute; inset: 6% -4%; background: #C4D9CB; transform: skew(-3deg); z-index: -1; }
+
+  details[open] summary .chev { transform: rotate(180deg); }
+  .chev { transition: transform 0.2s; }
+
+  .dropcap::first-letter { font-family: 'Fraunces', serif; font-style: italic; font-size: 4.6em; float: left; line-height: 0.85; padding: 0.1em 0.12em 0 0; color: #5C7A6B; }
+
+  .v3-grid { background-image: linear-gradient(#0EA5E910 1px, transparent 1px), linear-gradient(90deg, #0EA5E910 1px, transparent 1px); background-size: 32px 32px; }
+
+  .switcher { position: fixed; top: 16px; right: 16px; z-index: 99; display: flex; gap: 4px; padding: 6px; background: rgba(255,255,255,0.92); backdrop-filter: blur(10px); border-radius: 999px; box-shadow: 0 4px 24px rgba(0,0,0,0.12); border: 1px solid rgba(0,0,0,0.06); }
+  .switcher button { padding: 8px 14px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: 'Inter', sans-serif; color: #1F2A2A; cursor: pointer; transition: all 0.2s; border: 0; background: transparent; letter-spacing: 0.02em; }
+  .switcher button.active { background: #1F2A2A; color: #fff; }
+  .switcher button:hover:not(.active) { background: rgba(0,0,0,0.06); }
+  body[data-variant="2"] .switcher { background: rgba(10,22,40,0.92); border-color: rgba(255,255,255,0.1); }
+  body[data-variant="2"] .switcher button { color: #E8F4F0; }
+  body[data-variant="2"] .switcher button.active { background: #00E5A0; color: #0A1628; }
+  body[data-variant="3"] .switcher button.active { background: #0EA5E9; color: #fff; }
+
+  .demo-badge { position: fixed; bottom: 16px; right: 16px; z-index: 98; padding: 8px 14px; background: #1F2A2A; color: #F5F1EA; border-radius: 999px; font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.04em; text-decoration: none; box-shadow: 0 6px 20px rgba(0,0,0,0.2); transition: transform 0.2s; }
+  .demo-badge:hover { transform: translateY(-2px); }
+
+  .sticky-call { position: fixed; bottom: 0; left: 0; right: 0; z-index: 90; padding: 12px 16px; display: none; }
+  @media (max-width: 768px) { .sticky-call { display: flex; gap: 8px; } }
+</style>
+</head>
+<body data-variant="1" class="font-sans text-ink antialiased">
+
+<!-- ╔════════════════════════════════════════════════════════════════╗
+     ║  STICKY VARIANT SWITCHER — kill on prod after client picks       ║
+     ╚════════════════════════════════════════════════════════════════╝ -->
+<nav class="switcher" aria-label="Design variant">
+  <button data-v="1" class="active">V1 · Editorial</button>
+  <button data-v="2">V2 · Cinematic</button>
+  <button data-v="3">V3 · Minimal</button>
+</nav>
+
+<a class="demo-badge" href="https://skynetjoe.com" target="_blank" rel="noopener">Built by SkynetLabs ↗</a>
+
+<!-- ╔════════════════════════════════════════════════════════════════╗
+     ║  V1 — EDITORIAL  (cream + sage + ink, Fraunces serif)            ║
+     ╚════════════════════════════════════════════════════════════════╝ -->
+<div class="v1" style="display:block;">
+<div class="grain"></div>
+
+<header class="relative max-w-7xl mx-auto px-6 lg:px-12 pt-8 pb-4 flex items-center justify-between">
+  <a href="#" class="font-serif italic text-2xl text-sage">Sparkline<span class="text-ink not-italic font-semibold">.</span></a>
+  <nav class="hidden md:flex gap-8 text-sm">
+    <a href="#services" class="hover:text-sage">Services</a>
+    <a href="#process" class="hover:text-sage">How It Works</a>
+    <a href="#testimonials" class="hover:text-sage">Reviews</a>
+    <a href="#faq" class="hover:text-sage">FAQ</a>
+  </nav>
+  <a href="tel:+14075550199" class="hidden md:inline-block px-5 py-2.5 border border-ink rounded-full text-sm font-medium hover:bg-ink hover:text-cream transition" data-event="phone-click" data-source="header">(407) 555-0199</a>
+</header>
+
+<section class="relative max-w-7xl mx-auto px-6 lg:px-12 pt-12 pb-20 lg:pt-20 lg:pb-32">
+  <div class="grid lg:grid-cols-12 gap-10 items-center">
+    <div class="lg:col-span-7 relative z-10">
+      <div class="text-xs uppercase tracking-[0.3em] text-sage mb-6 font-medium">Seminole County · Florida · Est. 2026</div>
+      <h1 class="font-serif text-5xl md:text-7xl lg:text-[5.5rem] leading-[0.95] tracking-tight text-ink">
+        A home that <span class="skew-strip italic">smells</span><br>
+        like <em class="text-sage">Sunday</em><br>
+        morning.
+      </h1>
+      <p class="mt-8 text-lg lg:text-xl text-ink/70 max-w-xl leading-relaxed">
+        Licensed, insured, background-checked cleaners serving Lake Mary, Sanford, Oviedo, Winter Springs, and every corner of Seminole County. Instant quote in 60 seconds.
+      </p>
+      <div class="mt-10 flex flex-wrap gap-4">
+        <a href="#quote" class="px-8 py-4 bg-ink text-cream rounded-full font-medium hover:bg-sage transition" data-event="quote-cta" data-source="hero">Get instant quote →</a>
+        <a href="tel:+14075550199" class="px-8 py-4 border border-ink rounded-full font-medium hover:bg-ink hover:text-cream transition" data-event="phone-click" data-source="hero">Call (407) 555-0199</a>
+      </div>
+      <div class="mt-10 flex flex-wrap items-center gap-6 text-sm text-ink/60">
+        <div class="flex items-center gap-2"><span class="text-claret">✦</span> Licensed FL #CB-XXXXX</div>
+        <div class="flex items-center gap-2"><span class="text-claret">✦</span> $2M Liability Insured</div>
+        <div class="flex items-center gap-2"><span class="text-claret">✦</span> Google Guaranteed</div>
+      </div>
+    </div>
+    <div class="lg:col-span-5 relative">
+      <div class="relative aspect-[4/5] rounded-2xl overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&q=80" alt="Sparkling clean kitchen" class="w-full h-full object-cover kenburns" />
+      </div>
+      <div class="absolute -bottom-8 -left-8 w-44 aspect-square rounded-2xl overflow-hidden border-8 border-cream hidden lg:block">
+        <img src="https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?w=400&q=80" alt="Clean bathroom" class="w-full h-full object-cover" />
+      </div>
+      <div class="absolute -top-6 -right-4 bg-cream border border-ink/10 rounded-2xl p-5 shadow-xl hidden lg:block">
+        <div class="flex items-center gap-1 text-claret text-xl">★★★★★</div>
+        <div class="text-sm font-medium mt-1">4.9 / 5</div>
+        <div class="text-xs text-ink/60">Verified Google Reviews</div>
+      </div>
+    </div>
+  </div>
+  <div class="absolute -top-10 right-0 font-serif italic text-[18rem] text-sage/[0.04] leading-none pointer-events-none select-none hidden lg:block">01</div>
+</section>
+
+<section class="border-y border-ink/10 py-6 overflow-hidden bg-cream">
+  <div class="marquee flex whitespace-nowrap text-2xl font-serif italic text-ink/40">
+    <span class="px-8">Lake Mary</span><span class="px-2">✦</span>
+    <span class="px-8">Sanford</span><span class="px-2">✦</span>
+    <span class="px-8">Oviedo</span><span class="px-2">✦</span>
+    <span class="px-8">Winter Springs</span><span class="px-2">✦</span>
+    <span class="px-8">Altamonte Springs</span><span class="px-2">✦</span>
+    <span class="px-8">Casselberry</span><span class="px-2">✦</span>
+    <span class="px-8">Longwood</span><span class="px-2">✦</span>
+    <span class="px-8">Heathrow</span><span class="px-2">✦</span>
+    <span class="px-8">Lake Mary</span><span class="px-2">✦</span>
+    <span class="px-8">Sanford</span><span class="px-2">✦</span>
+    <span class="px-8">Oviedo</span><span class="px-2">✦</span>
+    <span class="px-8">Winter Springs</span><span class="px-2">✦</span>
+  </div>
+</section>
+
+<section id="services" class="relative max-w-7xl mx-auto px-6 lg:px-12 py-24 lg:py-32">
+  <div class="grid lg:grid-cols-12 gap-10 mb-16">
+    <div class="lg:col-span-5">
+      <div class="text-xs uppercase tracking-[0.3em] text-sage mb-4 font-medium">02 · Services</div>
+      <h2 class="font-serif text-4xl lg:text-6xl leading-[0.95] tracking-tight">Six ways we make your home <em class="text-sage">disappear</em>.</h2>
+    </div>
+    <p class="lg:col-span-6 lg:col-start-7 text-lg text-ink/70 leading-relaxed self-end">
+      Pricing is flat. No hidden trip fees. No bait-and-switch. Quote in 60 seconds — book in three.
+    </p>
+  </div>
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-ink/10">
+    <div class="bg-cream p-8 lg:p-10 hover:bg-sage/5 transition">
+      <div class="text-3xl mb-4">🏡</div>
+      <h3 class="font-serif text-2xl mb-3">Standard Clean</h3>
+      <p class="text-ink/70 text-sm leading-relaxed mb-5">Weekly, biweekly, or monthly. Kitchens, bathrooms, dust, vacuum, mop. The everyday reset.</p>
+      <div class="text-sage font-medium text-sm">From $135 →</div>
+    </div>
+    <div class="bg-cream p-8 lg:p-10 hover:bg-sage/5 transition">
+      <div class="text-3xl mb-4">✨</div>
+      <h3 class="font-serif text-2xl mb-3">Deep Clean</h3>
+      <p class="text-ink/70 text-sm leading-relaxed mb-5">Baseboards, blinds, inside appliances, grout. The "haven't done it in months" reset.</p>
+      <div class="text-sage font-medium text-sm">From $245 →</div>
+    </div>
+    <div class="bg-cream p-8 lg:p-10 hover:bg-sage/5 transition">
+      <div class="text-3xl mb-4">📦</div>
+      <h3 class="font-serif text-2xl mb-3">Move In / Move Out</h3>
+      <p class="text-ink/70 text-sm leading-relaxed mb-5">Empty home top-to-bottom. Includes inside cabinets, fridge, oven, walls. Get the deposit back.</p>
+      <div class="text-sage font-medium text-sm">From $295 →</div>
+    </div>
+    <div class="bg-cream p-8 lg:p-10 hover:bg-sage/5 transition">
+      <div class="text-3xl mb-4">🛠️</div>
+      <h3 class="font-serif text-2xl mb-3">Post-Construction</h3>
+      <p class="text-ink/70 text-sm leading-relaxed mb-5">Drywall dust, paint flecks, debris haul. Move-in-ready for the GC handover.</p>
+      <div class="text-sage font-medium text-sm">From $375 →</div>
+    </div>
+    <div class="bg-cream p-8 lg:p-10 hover:bg-sage/5 transition">
+      <div class="text-3xl mb-4">🛏️</div>
+      <h3 class="font-serif text-2xl mb-3">Airbnb Turnover</h3>
+      <p class="text-ink/70 text-sm leading-relaxed mb-5">Same-day flips, linen reset, restock. Built for hosts running 80%+ occupancy.</p>
+      <div class="text-sage font-medium text-sm">From $115 →</div>
+    </div>
+    <div class="bg-cream p-8 lg:p-10 hover:bg-sage/5 transition">
+      <div class="text-3xl mb-4">🪟</div>
+      <h3 class="font-serif text-2xl mb-3">Add-Ons</h3>
+      <p class="text-ink/70 text-sm leading-relaxed mb-5">Inside windows, laundry fold, fridge clean, oven deep, pet hair surcharge. Build your own.</p>
+      <div class="text-sage font-medium text-sm">À la carte →</div>
+    </div>
+  </div>
+</section>
+
+<section id="process" class="relative bg-sage/10 py-24 lg:py-32">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="text-xs uppercase tracking-[0.3em] text-sage mb-4 font-medium">03 · Process</div>
+    <h2 class="font-serif text-4xl lg:text-6xl leading-[0.95] tracking-tight mb-16 max-w-3xl">Quote in <em class="text-sage">60 seconds</em>. Booked in three.</h2>
+    <div class="grid md:grid-cols-3 gap-px bg-ink/10">
+      <div class="bg-sage/[0.02] p-10 relative">
+        <div class="font-serif italic text-7xl text-sage/30 absolute top-4 right-6">01</div>
+        <h3 class="font-serif text-2xl mb-3 mt-12">Tell us your home.</h3>
+        <p class="text-ink/70 leading-relaxed">Bedrooms, bathrooms, square footage, ZIP. The form takes 60 seconds. No phone tag.</p>
+      </div>
+      <div class="bg-sage/[0.02] p-10 relative">
+        <div class="font-serif italic text-7xl text-sage/30 absolute top-4 right-6">02</div>
+        <h3 class="font-serif text-2xl mb-3 mt-12">We send a flat quote.</h3>
+        <p class="text-ink/70 leading-relaxed">Pricing locked. No "trip fees" added at the door. Pick a date that works.</p>
+      </div>
+      <div class="bg-sage/[0.02] p-10 relative">
+        <div class="font-serif italic text-7xl text-sage/30 absolute top-4 right-6">03</div>
+        <h3 class="font-serif text-2xl mb-3 mt-12">A team arrives. You exhale.</h3>
+        <p class="text-ink/70 leading-relaxed">Two-person crew, eco-friendly products, 100% satisfaction or we re-clean free.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="relative max-w-7xl mx-auto px-6 lg:px-12 py-24 lg:py-32">
+  <div class="grid lg:grid-cols-12 gap-12">
+    <div class="lg:col-span-5">
+      <div class="grid grid-cols-2 gap-3">
+        <div class="aspect-[3/4] rounded-2xl overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600&q=80" alt="Cleaning team" class="w-full h-full object-cover" />
+        </div>
+        <div class="aspect-[3/4] rounded-2xl overflow-hidden mt-12">
+          <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80" alt="Sparkling kitchen" class="w-full h-full object-cover" />
+        </div>
+      </div>
+    </div>
+    <div class="lg:col-span-7">
+      <div class="text-xs uppercase tracking-[0.3em] text-sage mb-4 font-medium">04 · About</div>
+      <h2 class="font-serif text-4xl lg:text-5xl leading-[1.05] tracking-tight mb-8">Built for the way <em class="text-sage">Seminole</em> actually lives.</h2>
+      <p class="dropcap text-lg leading-[1.7] text-ink/80 mb-6">
+        Sparkline started because we got tired of cleaners who showed up late, charged more than the quote, and left the baseboards. Every team is W-2, English-speaking, background-checked, and trained on a 47-point checklist. Nothing skipped, nothing surprise-billed, nothing weird.
+      </p>
+      <p class="text-lg leading-[1.7] text-ink/80 mb-8">
+        We pay our cleaners 2× the Florida cleaning median, which is why our crews stick around — and why your home gets the same team week after week.
+      </p>
+      <div class="grid grid-cols-3 gap-6 pt-6 border-t border-ink/10">
+        <div><div class="font-serif text-4xl text-sage">W-2</div><div class="text-sm text-ink/60 mt-1">All Cleaners</div></div>
+        <div><div class="font-serif text-4xl text-sage">47</div><div class="text-sm text-ink/60 mt-1">Point Checklist</div></div>
+        <div><div class="font-serif text-4xl text-sage">100%</div><div class="text-sm text-ink/60 mt-1">Re-clean Guarantee</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="testimonials" class="bg-ink text-cream py-24 lg:py-32">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="text-xs uppercase tracking-[0.3em] text-sage mb-4 font-medium">05 · Reviews</div>
+    <h2 class="font-serif text-4xl lg:text-6xl leading-[0.95] tracking-tight mb-16 max-w-3xl">Verified <em class="text-sage">five-star</em> Google reviews.</h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="border border-cream/10 rounded-2xl p-8">
+        <div class="text-claret mb-4">★★★★★</div>
+        <p class="font-serif text-lg italic leading-relaxed mb-6">"Booked Sunday, cleaned Tuesday. They got under the fridge — under the fridge. I have never had a cleaner do that."</p>
+        <div class="text-sm text-cream/60">— Megan R. · Lake Mary · Move-out clean</div>
+      </div>
+      <div class="border border-cream/10 rounded-2xl p-8">
+        <div class="text-claret mb-4">★★★★★</div>
+        <p class="font-serif text-lg italic leading-relaxed mb-6">"Same team every week for six months. They know where the cat hides. That alone is worth the rate."</p>
+        <div class="text-sm text-cream/60">— David L. · Oviedo · Biweekly recurring</div>
+      </div>
+      <div class="border border-cream/10 rounded-2xl p-8">
+        <div class="text-claret mb-4">★★★★★</div>
+        <p class="font-serif text-lg italic leading-relaxed mb-6">"Got my full deposit back. The leasing agent literally said 'who did this'. Worth every penny."</p>
+        <div class="text-sm text-cream/60">— Priya S. · Sanford · Move-out</div>
+      </div>
+      <div class="border border-cream/10 rounded-2xl p-8">
+        <div class="text-claret mb-4">★★★★★</div>
+        <p class="font-serif text-lg italic leading-relaxed mb-6">"Run two Airbnb units in Heathrow. Same-day turnover, never a complaint, never a missed key."</p>
+        <div class="text-sm text-cream/60">— Marco T. · Heathrow · Airbnb turnover</div>
+      </div>
+      <div class="border border-cream/10 rounded-2xl p-8">
+        <div class="text-claret mb-4">★★★★★</div>
+        <p class="font-serif text-lg italic leading-relaxed mb-6">"Quote was the price. Final invoice was the price. After three other cleaners, that alone is rare."</p>
+        <div class="text-sm text-cream/60">— Ashley K. · Winter Springs · Deep clean</div>
+      </div>
+      <div class="border border-cream/10 rounded-2xl p-8">
+        <div class="text-claret mb-4">★★★★★</div>
+        <p class="font-serif text-lg italic leading-relaxed mb-6">"Post-reno cleanup after our kitchen tear-out. Drywall dust everywhere — gone in four hours."</p>
+        <div class="text-sm text-cream/60">— Jordan B. · Casselberry · Post-construction</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="max-w-4xl mx-auto px-6 lg:px-12 py-24 lg:py-32">
+  <div class="text-xs uppercase tracking-[0.3em] text-sage mb-4 font-medium">06 · FAQ</div>
+  <h2 class="font-serif text-4xl lg:text-6xl leading-[0.95] tracking-tight mb-12">Questions, <em class="text-sage">answered.</em></h2>
+  <div class="space-y-3">
+    <details class="border border-ink/10 rounded-xl bg-cream group" open>
+      <summary class="cursor-pointer p-6 flex justify-between items-center font-medium text-lg">Are you licensed and insured? <span class="chev text-sage">▼</span></summary>
+      <div class="px-6 pb-6 text-ink/70 leading-relaxed">Yes. Licensed in Florida, $2M general liability, $500K worker's comp. Certificates available on request — and the Google Guaranteed badge confirms it independently.</div>
+    </details>
+    <details class="border border-ink/10 rounded-xl bg-cream">
+      <summary class="cursor-pointer p-6 flex justify-between items-center font-medium text-lg">What's your service area? <span class="chev text-sage">▼</span></summary>
+      <div class="px-6 pb-6 text-ink/70 leading-relaxed">All of Seminole County: Lake Mary, Sanford, Oviedo, Winter Springs, Altamonte Springs, Casselberry, Longwood, Heathrow, Geneva. Bordering ZIPs case-by-case.</div>
+    </details>
+    <details class="border border-ink/10 rounded-xl bg-cream">
+      <summary class="cursor-pointer p-6 flex justify-between items-center font-medium text-lg">Do I need to be home? <span class="chev text-sage">▼</span></summary>
+      <div class="px-6 pb-6 text-ink/70 leading-relaxed">No. About 70% of our clients give us a code or hide-a-key. We're bonded and your team is the same crew every visit.</div>
+    </details>
+    <details class="border border-ink/10 rounded-xl bg-cream">
+      <summary class="cursor-pointer p-6 flex justify-between items-center font-medium text-lg">What products do you use? <span class="chev text-sage">▼</span></summary>
+      <div class="px-6 pb-6 text-ink/70 leading-relaxed">Eco-friendly, pet-safe, kid-safe by default. Branded products on request (we'll use what you have if you prefer). No ammonia, no bleach unless you ask.</div>
+    </details>
+    <details class="border border-ink/10 rounded-xl bg-cream">
+      <summary class="cursor-pointer p-6 flex justify-between items-center font-medium text-lg">What if I'm not happy? <span class="chev text-sage">▼</span></summary>
+      <div class="px-6 pb-6 text-ink/70 leading-relaxed">Tell us within 24 hours. We come back and re-clean the area, free. We've never had a client take us up on it more than once.</div>
+    </details>
+    <details class="border border-ink/10 rounded-xl bg-cream">
+      <summary class="cursor-pointer p-6 flex justify-between items-center font-medium text-lg">How does pricing work? <span class="chev text-sage">▼</span></summary>
+      <div class="px-6 pb-6 text-ink/70 leading-relaxed">Flat-rate based on bedrooms, bathrooms, square footage, and frequency. Recurring saves 15–25%. We send a written quote — what you see is what you pay.</div>
+    </details>
+  </div>
+</section>
+
+<section id="quote" class="bg-sage text-cream py-24 lg:py-32">
+  <div class="max-w-3xl mx-auto px-6 lg:px-12 text-center">
+    <div class="text-xs uppercase tracking-[0.3em] text-cream/70 mb-4 font-medium">Get your quote</div>
+    <h2 class="font-serif text-4xl lg:text-6xl leading-[0.95] tracking-tight mb-6">Sixty seconds. <em>Flat price.</em></h2>
+    <p class="text-lg text-cream/80 mb-10">No phone tag. No "we'll get back to you." Just a number and a date.</p>
+    <form class="grid md:grid-cols-2 gap-4 text-left" data-event="lead-form-submit" data-source="footer-quote">
+      <input type="text" name="name" placeholder="Full name" required class="px-5 py-4 rounded-xl bg-cream/10 border border-cream/20 text-cream placeholder-cream/50 focus:bg-cream/20 focus:outline-none" />
+      <input type="tel" name="phone" placeholder="Phone" required class="px-5 py-4 rounded-xl bg-cream/10 border border-cream/20 text-cream placeholder-cream/50 focus:bg-cream/20 focus:outline-none" />
+      <input type="email" name="email" placeholder="Email" required class="md:col-span-2 px-5 py-4 rounded-xl bg-cream/10 border border-cream/20 text-cream placeholder-cream/50 focus:bg-cream/20 focus:outline-none" />
+      <select name="service" required class="px-5 py-4 rounded-xl bg-cream/10 border border-cream/20 text-cream focus:bg-cream/20 focus:outline-none">
+        <option value="">Service type</option>
+        <option>Standard clean</option>
+        <option>Deep clean</option>
+        <option>Move in/out</option>
+        <option>Post-construction</option>
+        <option>Airbnb turnover</option>
+      </select>
+      <input type="text" name="zip" placeholder="ZIP code" required class="px-5 py-4 rounded-xl bg-cream/10 border border-cream/20 text-cream placeholder-cream/50 focus:bg-cream/20 focus:outline-none" />
+      <button type="submit" class="md:col-span-2 px-8 py-4 bg-cream text-ink rounded-full font-medium hover:bg-ink hover:text-cream transition">Send my quote →</button>
+    </form>
+    <p class="text-xs text-cream/60 mt-6">Replies in under 30 minutes during business hours. We never share your info.</p>
+  </div>
+</section>
+
+<footer class="bg-ink text-cream/70 py-12">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 grid md:grid-cols-4 gap-8 text-sm">
+    <div>
+      <div class="font-serif italic text-2xl text-cream mb-3">Sparkline<span class="not-italic">.</span></div>
+      <p>Seminole County's licensed, insured, Google-guaranteed residential cleaning service.</p>
+    </div>
+    <div>
+      <div class="font-medium text-cream mb-3">Service Area</div>
+      <p>Lake Mary · Sanford · Oviedo · Winter Springs · Altamonte · Casselberry · Longwood · Heathrow</p>
+    </div>
+    <div>
+      <div class="font-medium text-cream mb-3">Contact</div>
+      <a href="tel:+14075550199" class="block hover:text-cream" data-event="phone-click" data-source="footer">(407) 555-0199</a>
+      <a href="mailto:hello@sparkline.example" class="block hover:text-cream">hello@sparkline.example</a>
+    </div>
+    <div>
+      <div class="font-medium text-cream mb-3">Trust</div>
+      <p>FL License #CB-XXXXX · $2M Insured · Bonded · Background-Checked W-2 Crews</p>
+    </div>
+  </div>
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 mt-8 pt-8 border-t border-cream/10 text-xs text-cream/50 flex flex-wrap justify-between gap-4">
+    <div>© 2026 Sparkline Residential · Demo by <a href="https://skynetjoe.com" class="underline">SkynetLabs</a></div>
+    <div>This is a speculative design — not a live business.</div>
+  </div>
+</footer>
+</div>
+<!-- /V1 -->
+
+
+<!-- ╔════════════════════════════════════════════════════════════════╗
+     ║  V2 — CINEMATIC  (navy + electric mint, animated, modern)        ║
+     ╚════════════════════════════════════════════════════════════════╝ -->
+<div class="v2" style="display:none;">
+<div class="v2-orb" style="top:-100px; left:-100px; width:600px; height:600px; background: radial-gradient(circle, #00E5A0, transparent 70%);"></div>
+<div class="v2-orb" style="bottom:-200px; right:-100px; width:700px; height:700px; background: radial-gradient(circle, #0EA5E9, transparent 70%);"></div>
+
+<header class="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 pt-8 pb-4 flex items-center justify-between">
+  <a href="#" class="font-display font-bold text-2xl text-frost tracking-tight">Sparkline<span class="text-mint">.</span></a>
+  <nav class="hidden md:flex gap-8 text-sm text-frost/80 font-display">
+    <a href="#v2-services" class="hover:text-mint">Services</a>
+    <a href="#v2-process" class="hover:text-mint">Process</a>
+    <a href="#v2-reviews" class="hover:text-mint">Reviews</a>
+    <a href="#v2-faq" class="hover:text-mint">FAQ</a>
+  </nav>
+  <a href="tel:+14075550199" class="hidden md:inline-block px-5 py-2.5 bg-mint text-navy rounded-full text-sm font-bold font-display hover:bg-frost transition" data-event="phone-click" data-source="header">Call now</a>
+</header>
+
+<section class="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 pt-16 pb-24 lg:pt-28 lg:pb-40">
+  <div class="text-center max-w-5xl mx-auto">
+    <div class="inline-flex items-center gap-2 px-4 py-2 bg-mint/10 border border-mint/30 rounded-full text-mint text-xs font-display font-semibold tracking-widest uppercase mb-8">
+      <span class="w-2 h-2 bg-mint rounded-full animate-pulse"></span> Booking now · Seminole County · FL
+    </div>
+    <h1 class="font-display text-5xl md:text-7xl lg:text-[6rem] font-bold leading-[0.95] tracking-tight text-frost">
+      Spotless homes,<br>
+      <span class="bg-gradient-to-r from-mint via-sky to-mint bg-clip-text text-transparent">measurably better.</span>
+    </h1>
+    <p class="mt-8 text-lg lg:text-xl text-frost/70 max-w-2xl mx-auto leading-relaxed">
+      Licensed, insured, Google-guaranteed cleaning across Lake Mary, Sanford, Oviedo and Winter Springs. Quote in 60 seconds. Booked in three.
+    </p>
+    <div class="mt-12 flex flex-wrap gap-4 justify-center">
+      <a href="#v2-quote" class="px-8 py-4 bg-mint text-navy rounded-full font-bold font-display hover:scale-105 transition shadow-2xl shadow-mint/30" data-event="quote-cta" data-source="hero">Get instant quote →</a>
+      <a href="tel:+14075550199" class="px-8 py-4 border border-frost/30 text-frost rounded-full font-display font-medium hover:bg-frost/10 transition" data-event="phone-click" data-source="hero">(407) 555-0199</a>
+    </div>
+  </div>
+
+  <div class="mt-20 relative aspect-video rounded-3xl overflow-hidden border border-frost/10 shadow-2xl shadow-mint/10">
+    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&q=80" alt="Pristine modern home" class="w-full h-full object-cover kenburns" />
+    <div class="absolute inset-0 bg-gradient-to-t from-navyDeep via-navyDeep/30 to-transparent"></div>
+    <div class="absolute bottom-8 left-8 right-8 flex flex-wrap items-center justify-between gap-6">
+      <div class="flex flex-wrap items-center gap-6 text-frost text-sm font-display">
+        <div class="flex items-center gap-2"><span class="text-mint">●</span> FL License #CB-XXXXX</div>
+        <div class="flex items-center gap-2"><span class="text-mint">●</span> $2M Insured</div>
+        <div class="flex items-center gap-2"><span class="text-mint">●</span> Google Guaranteed</div>
+      </div>
+      <div class="flex items-center gap-2 text-frost">
+        <span class="text-mint text-xl">★★★★★</span>
+        <span class="font-display font-bold">4.9</span>
+        <span class="text-frost/60 text-sm">· Verified</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="v2-services" class="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 py-24">
+  <div class="text-center mb-16">
+    <div class="text-mint font-display text-xs tracking-[0.3em] uppercase mb-4">Services</div>
+    <h2 class="font-display text-4xl lg:text-6xl font-bold text-frost tracking-tight">Built for every kind of clean.</h2>
+  </div>
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div class="group p-8 rounded-3xl bg-frost/[0.03] border border-frost/10 hover:border-mint/40 hover:bg-mint/5 transition">
+      <div class="w-12 h-12 rounded-2xl bg-mint/20 flex items-center justify-center text-2xl mb-5">🏡</div>
+      <h3 class="font-display text-2xl font-bold text-frost mb-3">Standard</h3>
+      <p class="text-frost/60 text-sm leading-relaxed mb-5">Weekly, biweekly, monthly. Kitchens, baths, dust, mop. Reset that sticks.</p>
+      <div class="text-mint font-display font-bold text-sm">From $135</div>
+    </div>
+    <div class="group p-8 rounded-3xl bg-frost/[0.03] border border-frost/10 hover:border-mint/40 hover:bg-mint/5 transition">
+      <div class="w-12 h-12 rounded-2xl bg-mint/20 flex items-center justify-center text-2xl mb-5">✨</div>
+      <h3 class="font-display text-2xl font-bold text-frost mb-3">Deep Clean</h3>
+      <p class="text-frost/60 text-sm leading-relaxed mb-5">Baseboards, blinds, inside appliances, grout. The full reset.</p>
+      <div class="text-mint font-display font-bold text-sm">From $245</div>
+    </div>
+    <div class="group p-8 rounded-3xl bg-frost/[0.03] border border-frost/10 hover:border-mint/40 hover:bg-mint/5 transition">
+      <div class="w-12 h-12 rounded-2xl bg-mint/20 flex items-center justify-center text-2xl mb-5">📦</div>
+      <h3 class="font-display text-2xl font-bold text-frost mb-3">Move In/Out</h3>
+      <p class="text-frost/60 text-sm leading-relaxed mb-5">Empty home top-to-bottom. Cabinets, fridge, oven, walls. Deposit-back ready.</p>
+      <div class="text-mint font-display font-bold text-sm">From $295</div>
+    </div>
+    <div class="group p-8 rounded-3xl bg-frost/[0.03] border border-frost/10 hover:border-mint/40 hover:bg-mint/5 transition">
+      <div class="w-12 h-12 rounded-2xl bg-mint/20 flex items-center justify-center text-2xl mb-5">🛠️</div>
+      <h3 class="font-display text-2xl font-bold text-frost mb-3">Post-Construction</h3>
+      <p class="text-frost/60 text-sm leading-relaxed mb-5">Drywall dust, paint flecks, debris. Ready for handover.</p>
+      <div class="text-mint font-display font-bold text-sm">From $375</div>
+    </div>
+    <div class="group p-8 rounded-3xl bg-frost/[0.03] border border-frost/10 hover:border-mint/40 hover:bg-mint/5 transition">
+      <div class="w-12 h-12 rounded-2xl bg-mint/20 flex items-center justify-center text-2xl mb-5">🛏️</div>
+      <h3 class="font-display text-2xl font-bold text-frost mb-3">Airbnb Turnover</h3>
+      <p class="text-frost/60 text-sm leading-relaxed mb-5">Same-day flips, linens, restock. Built for 80%+ occupancy.</p>
+      <div class="text-mint font-display font-bold text-sm">From $115</div>
+    </div>
+    <div class="group p-8 rounded-3xl bg-frost/[0.03] border border-frost/10 hover:border-mint/40 hover:bg-mint/5 transition">
+      <div class="w-12 h-12 rounded-2xl bg-mint/20 flex items-center justify-center text-2xl mb-5">🪟</div>
+      <h3 class="font-display text-2xl font-bold text-frost mb-3">Add-Ons</h3>
+      <p class="text-frost/60 text-sm leading-relaxed mb-5">Inside windows, laundry, oven deep, pet hair. À la carte.</p>
+      <div class="text-mint font-display font-bold text-sm">From $25</div>
+    </div>
+  </div>
+</section>
+
+<section id="v2-process" class="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 py-24">
+  <div class="text-center mb-16">
+    <div class="text-mint font-display text-xs tracking-[0.3em] uppercase mb-4">Process</div>
+    <h2 class="font-display text-4xl lg:text-6xl font-bold text-frost tracking-tight">From quote to clean in 60 seconds.</h2>
+  </div>
+  <div class="grid md:grid-cols-3 gap-6">
+    <div class="p-10 rounded-3xl bg-gradient-to-br from-frost/5 to-transparent border border-frost/10">
+      <div class="font-display text-6xl font-bold text-mint mb-4">01</div>
+      <h3 class="font-display text-2xl font-bold text-frost mb-3">Tell us your home</h3>
+      <p class="text-frost/60 leading-relaxed">Bedrooms, bathrooms, square footage, ZIP. 60 seconds. No phone tag.</p>
+    </div>
+    <div class="p-10 rounded-3xl bg-gradient-to-br from-mint/10 to-transparent border border-mint/20">
+      <div class="font-display text-6xl font-bold text-mint mb-4">02</div>
+      <h3 class="font-display text-2xl font-bold text-frost mb-3">Flat quote arrives</h3>
+      <p class="text-frost/60 leading-relaxed">Pricing locked. No "trip fees" at the door. Pick a date.</p>
+    </div>
+    <div class="p-10 rounded-3xl bg-gradient-to-br from-frost/5 to-transparent border border-frost/10">
+      <div class="font-display text-6xl font-bold text-mint mb-4">03</div>
+      <h3 class="font-display text-2xl font-bold text-frost mb-3">A team arrives</h3>
+      <p class="text-frost/60 leading-relaxed">Two-person W-2 crew, eco-friendly products, 100% re-clean guarantee.</p>
+    </div>
+  </div>
+</section>
+
+<section id="v2-reviews" class="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 py-24">
+  <div class="text-center mb-16">
+    <div class="text-mint font-display text-xs tracking-[0.3em] uppercase mb-4">Reviews</div>
+    <h2 class="font-display text-4xl lg:text-6xl font-bold text-frost tracking-tight">4.9★ across <span class="text-mint">200+</span> verified reviews.</h2>
+  </div>
+  <div class="grid md:grid-cols-3 gap-6">
+    <div class="p-8 rounded-3xl bg-frost/[0.03] border border-frost/10">
+      <div class="text-mint mb-3">★★★★★</div>
+      <p class="text-frost/80 leading-relaxed mb-5">"They got under the fridge — under the fridge. I have never had a cleaner do that."</p>
+      <div class="text-frost/50 text-sm font-display">Megan R · Lake Mary</div>
+    </div>
+    <div class="p-8 rounded-3xl bg-frost/[0.03] border border-frost/10">
+      <div class="text-mint mb-3">★★★★★</div>
+      <p class="text-frost/80 leading-relaxed mb-5">"Same team every week for six months. They know where the cat hides. Worth the rate."</p>
+      <div class="text-frost/50 text-sm font-display">David L · Oviedo</div>
+    </div>
+    <div class="p-8 rounded-3xl bg-frost/[0.03] border border-frost/10">
+      <div class="text-mint mb-3">★★★★★</div>
+      <p class="text-frost/80 leading-relaxed mb-5">"Got my full deposit back. The leasing agent literally said 'who did this'."</p>
+      <div class="text-frost/50 text-sm font-display">Priya S · Sanford</div>
+    </div>
+  </div>
+</section>
+
+<section id="v2-faq" class="relative z-10 max-w-4xl mx-auto px-6 lg:px-12 py-24">
+  <div class="text-center mb-16">
+    <div class="text-mint font-display text-xs tracking-[0.3em] uppercase mb-4">FAQ</div>
+    <h2 class="font-display text-4xl lg:text-6xl font-bold text-frost tracking-tight">Common questions.</h2>
+  </div>
+  <div class="space-y-3">
+    <details class="rounded-2xl bg-frost/[0.03] border border-frost/10 group" open>
+      <summary class="cursor-pointer p-6 flex justify-between items-center font-display font-semibold text-frost text-lg">Licensed and insured? <span class="chev text-mint">▼</span></summary>
+      <div class="px-6 pb-6 text-frost/60 leading-relaxed">FL license, $2M general liability, $500K worker's comp. Google Guaranteed badge confirms it independently.</div>
+    </details>
+    <details class="rounded-2xl bg-frost/[0.03] border border-frost/10">
+      <summary class="cursor-pointer p-6 flex justify-between items-center font-display font-semibold text-frost text-lg">Service area? <span class="chev text-mint">▼</span></summary>
+      <div class="px-6 pb-6 text-frost/60 leading-relaxed">All of Seminole County. Bordering ZIPs case-by-case.</div>
+    </details>
+    <details class="rounded-2xl bg-frost/[0.03] border border-frost/10">
+      <summary class="cursor-pointer p-6 flex justify-between items-center font-display font-semibold text-frost text-lg">Do I need to be home? <span class="chev text-mint">▼</span></summary>
+      <div class="px-6 pb-6 text-frost/60 leading-relaxed">No. About 70% give us a code. Bonded crews, same team every visit.</div>
+    </details>
+    <details class="rounded-2xl bg-frost/[0.03] border border-frost/10">
+      <summary class="cursor-pointer p-6 flex justify-between items-center font-display font-semibold text-frost text-lg">What products? <span class="chev text-mint">▼</span></summary>
+      <div class="px-6 pb-6 text-frost/60 leading-relaxed">Eco-friendly, pet-safe, kid-safe. Branded products on request.</div>
+    </details>
+    <details class="rounded-2xl bg-frost/[0.03] border border-frost/10">
+      <summary class="cursor-pointer p-6 flex justify-between items-center font-display font-semibold text-frost text-lg">What if I'm not happy? <span class="chev text-mint">▼</span></summary>
+      <div class="px-6 pb-6 text-frost/60 leading-relaxed">24-hour re-clean guarantee. Free.</div>
+    </details>
+  </div>
+</section>
+
+<section id="v2-quote" class="relative z-10 max-w-3xl mx-auto px-6 lg:px-12 py-24">
+  <div class="rounded-3xl bg-gradient-to-br from-mint/20 via-frost/5 to-sky/20 p-8 lg:p-12 border border-mint/30">
+    <div class="text-center mb-8">
+      <div class="text-mint font-display text-xs tracking-[0.3em] uppercase mb-3">Quote</div>
+      <h2 class="font-display text-4xl lg:text-5xl font-bold text-frost tracking-tight mb-4">Sixty seconds. Flat price.</h2>
+      <p class="text-frost/70">Replies under 30 minutes during business hours.</p>
+    </div>
+    <form class="grid md:grid-cols-2 gap-3" data-event="lead-form-submit" data-source="footer-quote">
+      <input type="text" name="name" placeholder="Full name" required class="px-5 py-4 rounded-xl bg-navyDeep/50 border border-frost/20 text-frost placeholder-frost/40 focus:border-mint focus:outline-none" />
+      <input type="tel" name="phone" placeholder="Phone" required class="px-5 py-4 rounded-xl bg-navyDeep/50 border border-frost/20 text-frost placeholder-frost/40 focus:border-mint focus:outline-none" />
+      <input type="email" name="email" placeholder="Email" required class="md:col-span-2 px-5 py-4 rounded-xl bg-navyDeep/50 border border-frost/20 text-frost placeholder-frost/40 focus:border-mint focus:outline-none" />
+      <select name="service" required class="px-5 py-4 rounded-xl bg-navyDeep/50 border border-frost/20 text-frost focus:border-mint focus:outline-none">
+        <option value="">Service type</option>
+        <option>Standard</option><option>Deep clean</option><option>Move in/out</option><option>Post-construction</option><option>Airbnb</option>
+      </select>
+      <input type="text" name="zip" placeholder="ZIP code" required class="px-5 py-4 rounded-xl bg-navyDeep/50 border border-frost/20 text-frost placeholder-frost/40 focus:border-mint focus:outline-none" />
+      <button type="submit" class="md:col-span-2 px-8 py-4 bg-mint text-navy rounded-full font-bold font-display hover:scale-[1.02] transition">Send my quote →</button>
+    </form>
+  </div>
+</section>
+
+<footer class="relative z-10 border-t border-frost/10 py-12 mt-12">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 text-center text-frost/50 text-sm">
+    <div class="font-display font-bold text-frost text-xl mb-2">Sparkline<span class="text-mint">.</span></div>
+    <p class="mb-4">Seminole County · FL License #CB-XXXXX · $2M Insured · Bonded</p>
+    <p class="text-xs">© 2026 Sparkline · Demo by <a href="https://skynetjoe.com" class="text-mint hover:underline">SkynetLabs</a></p>
+  </div>
+</footer>
+</div>
+<!-- /V2 -->
+
+
+<!-- ╔════════════════════════════════════════════════════════════════╗
+     ║  V3 — BOLD / MINIMAL  (white + sky blue, type-driven, brutalist) ║
+     ╚════════════════════════════════════════════════════════════════╝ -->
+<div class="v3" style="display:none;">
+
+<header class="border-b-2 border-black sticky top-0 bg-white z-30">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 py-4 flex items-center justify-between">
+    <a href="#" class="font-mono font-bold text-xl tracking-tighter text-black">SPARKLINE<span class="text-sky">/</span></a>
+    <nav class="hidden md:flex gap-8 text-sm font-mono uppercase">
+      <a href="#v3-services" class="hover:text-sky">Services</a>
+      <a href="#v3-process" class="hover:text-sky">Process</a>
+      <a href="#v3-reviews" class="hover:text-sky">Reviews</a>
+      <a href="#v3-faq" class="hover:text-sky">FAQ</a>
+    </nav>
+    <a href="tel:+14075550199" class="px-5 py-2.5 bg-black text-white rounded-none font-mono font-bold text-sm hover:bg-sky transition" data-event="phone-click" data-source="header">CALL +1 407-555-0199</a>
+  </div>
+</header>
+
+<section class="relative v3-grid border-b-2 border-black">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 py-20 lg:py-32">
+    <div class="font-mono text-xs uppercase tracking-[0.3em] mb-6 text-sky">[ Seminole County · FL · 2026 ]</div>
+    <h1 class="font-sans font-extrabold text-6xl md:text-8xl lg:text-[10rem] leading-[0.85] tracking-tighter text-black">
+      WE CLEAN.<br>
+      YOU <span class="text-sky">EXHALE.</span>
+    </h1>
+    <p class="mt-10 max-w-2xl text-xl text-black/70 leading-relaxed">
+      Licensed. Insured. Google-guaranteed. Residential cleaning across all of Seminole County. Quote in <strong class="text-sky">60 seconds.</strong>
+    </p>
+    <div class="mt-12 flex flex-wrap gap-3">
+      <a href="#v3-quote" class="px-8 py-5 bg-sky text-white font-bold font-sans hover:bg-black transition" data-event="quote-cta" data-source="hero">→ GET QUOTE</a>
+      <a href="tel:+14075550199" class="px-8 py-5 border-2 border-black font-bold font-sans hover:bg-black hover:text-white transition" data-event="phone-click" data-source="hero">CALL NOW</a>
+    </div>
+
+    <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-px bg-black border-2 border-black">
+      <div class="bg-white p-6">
+        <div class="font-mono text-xs text-black/50 uppercase mb-1">License</div>
+        <div class="font-sans font-bold text-xl">CB-XXXXX</div>
+      </div>
+      <div class="bg-white p-6">
+        <div class="font-mono text-xs text-black/50 uppercase mb-1">Insured</div>
+        <div class="font-sans font-bold text-xl">$2,000,000</div>
+      </div>
+      <div class="bg-white p-6">
+        <div class="font-mono text-xs text-black/50 uppercase mb-1">Reviews</div>
+        <div class="font-sans font-bold text-xl">4.9★ / 200+</div>
+      </div>
+      <div class="bg-sky text-white p-6">
+        <div class="font-mono text-xs text-white/70 uppercase mb-1">Status</div>
+        <div class="font-sans font-bold text-xl">Booking</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="v3-services" class="border-b-2 border-black">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 py-20">
+    <div class="grid lg:grid-cols-12 gap-8 mb-12">
+      <div class="lg:col-span-4 font-mono text-xs uppercase tracking-[0.3em] text-sky">/ 01 SERVICES</div>
+      <h2 class="lg:col-span-8 font-sans font-extrabold text-4xl lg:text-6xl leading-[0.95] tracking-tight">Six services. Flat pricing. Zero surprises.</h2>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-black border-2 border-black">
+      <div class="bg-white p-8 hover:bg-sky hover:text-white transition group">
+        <div class="font-mono text-xs uppercase tracking-widest mb-3 text-sky group-hover:text-white">01 / Standard</div>
+        <h3 class="font-sans font-extrabold text-3xl mb-3">Recurring Clean</h3>
+        <p class="text-sm leading-relaxed mb-4 opacity-70">Weekly · biweekly · monthly. Kitchens, baths, dust, mop.</p>
+        <div class="font-mono font-bold">FROM $135</div>
+      </div>
+      <div class="bg-white p-8 hover:bg-sky hover:text-white transition group">
+        <div class="font-mono text-xs uppercase tracking-widest mb-3 text-sky group-hover:text-white">02 / Deep</div>
+        <h3 class="font-sans font-extrabold text-3xl mb-3">Deep Clean</h3>
+        <p class="text-sm leading-relaxed mb-4 opacity-70">Baseboards, blinds, inside appliances, grout.</p>
+        <div class="font-mono font-bold">FROM $245</div>
+      </div>
+      <div class="bg-white p-8 hover:bg-sky hover:text-white transition group">
+        <div class="font-mono text-xs uppercase tracking-widest mb-3 text-sky group-hover:text-white">03 / Move</div>
+        <h3 class="font-sans font-extrabold text-3xl mb-3">Move In/Out</h3>
+        <p class="text-sm leading-relaxed mb-4 opacity-70">Empty home top-to-bottom. Cabinets, fridge, oven, walls.</p>
+        <div class="font-mono font-bold">FROM $295</div>
+      </div>
+      <div class="bg-white p-8 hover:bg-sky hover:text-white transition group">
+        <div class="font-mono text-xs uppercase tracking-widest mb-3 text-sky group-hover:text-white">04 / Post-Reno</div>
+        <h3 class="font-sans font-extrabold text-3xl mb-3">Post-Construction</h3>
+        <p class="text-sm leading-relaxed mb-4 opacity-70">Drywall dust, paint flecks, debris haul.</p>
+        <div class="font-mono font-bold">FROM $375</div>
+      </div>
+      <div class="bg-white p-8 hover:bg-sky hover:text-white transition group">
+        <div class="font-mono text-xs uppercase tracking-widest mb-3 text-sky group-hover:text-white">05 / STR</div>
+        <h3 class="font-sans font-extrabold text-3xl mb-3">Airbnb Turnover</h3>
+        <p class="text-sm leading-relaxed mb-4 opacity-70">Same-day flips, linens, restock.</p>
+        <div class="font-mono font-bold">FROM $115</div>
+      </div>
+      <div class="bg-black text-white p-8 hover:bg-sky transition group">
+        <div class="font-mono text-xs uppercase tracking-widest mb-3 text-sky">06 / Add-Ons</div>
+        <h3 class="font-sans font-extrabold text-3xl mb-3">À La Carte</h3>
+        <p class="text-sm leading-relaxed mb-4 opacity-70">Inside windows, laundry, oven deep, pet hair.</p>
+        <div class="font-mono font-bold">FROM $25</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="v3-process" class="border-b-2 border-black bg-black text-white">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 py-20">
+    <div class="font-mono text-xs uppercase tracking-[0.3em] text-sky mb-4">/ 02 PROCESS</div>
+    <h2 class="font-sans font-extrabold text-4xl lg:text-6xl leading-[0.95] tracking-tight mb-12">Three steps. No phone tag.</h2>
+    <div class="grid md:grid-cols-3 gap-px bg-white/10">
+      <div class="p-10 bg-black">
+        <div class="font-mono text-7xl font-bold text-sky mb-4">01</div>
+        <h3 class="font-sans font-extrabold text-2xl mb-3">TELL US</h3>
+        <p class="text-white/60 leading-relaxed">Bedrooms, bathrooms, square footage, ZIP. 60 seconds.</p>
+      </div>
+      <div class="p-10 bg-black">
+        <div class="font-mono text-7xl font-bold text-sky mb-4">02</div>
+        <h3 class="font-sans font-extrabold text-2xl mb-3">FLAT QUOTE</h3>
+        <p class="text-white/60 leading-relaxed">Pricing locked. Pick a date.</p>
+      </div>
+      <div class="p-10 bg-black">
+        <div class="font-mono text-7xl font-bold text-sky mb-4">03</div>
+        <h3 class="font-sans font-extrabold text-2xl mb-3">EXHALE</h3>
+        <p class="text-white/60 leading-relaxed">Two-person W-2 crew, eco products, 100% guarantee.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="v3-reviews" class="border-b-2 border-black">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 py-20">
+    <div class="font-mono text-xs uppercase tracking-[0.3em] text-sky mb-4">/ 03 REVIEWS</div>
+    <h2 class="font-sans font-extrabold text-4xl lg:text-6xl leading-[0.95] tracking-tight mb-12">4.9★ · 200+ verified.</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="border-2 border-black p-8">
+        <div class="text-sky text-2xl mb-3">★★★★★</div>
+        <p class="font-sans text-lg leading-snug mb-5">"They got under the fridge — under the fridge. Never had a cleaner do that."</p>
+        <div class="font-mono text-xs uppercase">Megan R / Lake Mary</div>
+      </div>
+      <div class="border-2 border-black p-8 bg-sky text-white">
+        <div class="text-white text-2xl mb-3">★★★★★</div>
+        <p class="font-sans text-lg leading-snug mb-5">"Same team every week. They know where the cat hides. Worth the rate."</p>
+        <div class="font-mono text-xs uppercase">David L / Oviedo</div>
+      </div>
+      <div class="border-2 border-black p-8">
+        <div class="text-sky text-2xl mb-3">★★★★★</div>
+        <p class="font-sans text-lg leading-snug mb-5">"Got my full deposit back. Leasing agent literally said 'who did this'."</p>
+        <div class="font-mono text-xs uppercase">Priya S / Sanford</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="v3-faq" class="border-b-2 border-black">
+  <div class="max-w-4xl mx-auto px-6 lg:px-12 py-20">
+    <div class="font-mono text-xs uppercase tracking-[0.3em] text-sky mb-4">/ 04 FAQ</div>
+    <h2 class="font-sans font-extrabold text-4xl lg:text-6xl leading-[0.95] tracking-tight mb-12">Common questions.</h2>
+    <div class="space-y-0 border-2 border-black">
+      <details class="border-b-2 border-black group last:border-0" open>
+        <summary class="cursor-pointer p-6 flex justify-between items-center font-mono font-bold uppercase">Licensed and insured? <span class="chev text-sky">▼</span></summary>
+        <div class="px-6 pb-6 leading-relaxed">FL license, $2M general liability, $500K worker's comp. Google Guaranteed badge confirms it independently.</div>
+      </details>
+      <details class="border-b-2 border-black group last:border-0">
+        <summary class="cursor-pointer p-6 flex justify-between items-center font-mono font-bold uppercase">Service area? <span class="chev text-sky">▼</span></summary>
+        <div class="px-6 pb-6 leading-relaxed">All of Seminole County. Bordering ZIPs case-by-case.</div>
+      </details>
+      <details class="border-b-2 border-black group last:border-0">
+        <summary class="cursor-pointer p-6 flex justify-between items-center font-mono font-bold uppercase">Need to be home? <span class="chev text-sky">▼</span></summary>
+        <div class="px-6 pb-6 leading-relaxed">No. About 70% give us a code. Bonded crews, same team every visit.</div>
+      </details>
+      <details class="border-b-2 border-black group last:border-0">
+        <summary class="cursor-pointer p-6 flex justify-between items-center font-mono font-bold uppercase">What products? <span class="chev text-sky">▼</span></summary>
+        <div class="px-6 pb-6 leading-relaxed">Eco-friendly, pet-safe, kid-safe. Branded products on request.</div>
+      </details>
+      <details class="group last:border-0">
+        <summary class="cursor-pointer p-6 flex justify-between items-center font-mono font-bold uppercase">Not happy? <span class="chev text-sky">▼</span></summary>
+        <div class="px-6 pb-6 leading-relaxed">24-hour re-clean guarantee. Free.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section id="v3-quote" class="bg-sky text-white border-b-2 border-black">
+  <div class="max-w-4xl mx-auto px-6 lg:px-12 py-20">
+    <div class="font-mono text-xs uppercase tracking-[0.3em] text-white/70 mb-4">/ 05 GET QUOTE</div>
+    <h2 class="font-sans font-extrabold text-5xl lg:text-7xl leading-[0.95] tracking-tight mb-10">60 SECONDS.<br>FLAT PRICE.</h2>
+    <form class="grid md:grid-cols-2 gap-3" data-event="lead-form-submit" data-source="footer-quote">
+      <input type="text" name="name" placeholder="FULL NAME" required class="px-5 py-4 bg-white/10 border-2 border-white text-white placeholder-white/60 font-mono uppercase text-sm focus:bg-white/20 focus:outline-none" />
+      <input type="tel" name="phone" placeholder="PHONE" required class="px-5 py-4 bg-white/10 border-2 border-white text-white placeholder-white/60 font-mono uppercase text-sm focus:bg-white/20 focus:outline-none" />
+      <input type="email" name="email" placeholder="EMAIL" required class="md:col-span-2 px-5 py-4 bg-white/10 border-2 border-white text-white placeholder-white/60 font-mono uppercase text-sm focus:bg-white/20 focus:outline-none" />
+      <select name="service" required class="px-5 py-4 bg-white/10 border-2 border-white text-white font-mono uppercase text-sm focus:bg-white/20 focus:outline-none">
+        <option value="" class="text-black">SERVICE TYPE</option>
+        <option class="text-black">Standard</option><option class="text-black">Deep clean</option><option class="text-black">Move in/out</option><option class="text-black">Post-construction</option><option class="text-black">Airbnb</option>
+      </select>
+      <input type="text" name="zip" placeholder="ZIP" required class="px-5 py-4 bg-white/10 border-2 border-white text-white placeholder-white/60 font-mono uppercase text-sm focus:bg-white/20 focus:outline-none" />
+      <button type="submit" class="md:col-span-2 px-8 py-5 bg-black text-white font-sans font-extrabold text-lg hover:bg-white hover:text-black transition border-2 border-black">→ SEND MY QUOTE</button>
+    </form>
+  </div>
+</section>
+
+<footer class="bg-black text-white py-12">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="font-mono font-bold text-2xl mb-2">SPARKLINE<span class="text-sky">/</span></div>
+    <p class="text-white/60 text-sm mb-6 max-w-md">Licensed, insured, Google-guaranteed residential cleaning across Seminole County, FL.</p>
+    <div class="flex flex-wrap justify-between gap-4 text-xs font-mono text-white/40 pt-6 border-t border-white/20">
+      <div>© 2026 SPARKLINE / DEMO BY <a href="https://skynetjoe.com" class="text-sky hover:underline">SKYNETLABS</a></div>
+      <div>FL #CB-XXXXX · $2M INSURED · BONDED</div>
+    </div>
+  </div>
+</footer>
+</div>
+<!-- /V3 -->
+
+
+<!-- mobile sticky call bar (shared) -->
+<div class="sticky-call md:hidden">
+  <a href="tel:+14075550199" class="flex-1 px-4 py-3 bg-ink text-cream rounded-full text-center font-medium" data-event="phone-click" data-source="sticky">📞 Call now</a>
+  <a href="#quote" class="flex-1 px-4 py-3 bg-sage text-cream rounded-full text-center font-medium" data-event="quote-cta" data-source="sticky">Get quote</a>
+</div>
+
+<!-- Local Business + FAQ JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HouseCleaningService",
+  "name": "Sparkline Residential Cleaning",
+  "description": "Licensed, insured, Google-guaranteed residential cleaning across Seminole County, FL.",
+  "telephone": "+1-407-555-0199",
+  "address": { "@type": "PostalAddress", "addressLocality": "Lake Mary", "addressRegion": "FL", "postalCode": "32746", "addressCountry": "US" },
+  "areaServed": ["Lake Mary","Sanford","Oviedo","Winter Springs","Altamonte Springs","Casselberry","Longwood","Heathrow"],
+  "priceRange": "$$",
+  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "200" }
+}
+</script>
+
+<script>
+  // Variant switcher
+  const buttons = document.querySelectorAll('.switcher button');
+  function setVariant(v) {
+    document.body.dataset.variant = v;
+    buttons.forEach(b => b.classList.toggle('active', b.dataset.v === v));
+    history.replaceState(null, '', '#v' + v);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  buttons.forEach(b => b.addEventListener('click', () => setVariant(b.dataset.v)));
+  const hashV = (location.hash.match(/^#v([123])$/) || [])[1];
+  if (hashV) setVariant(hashV);
+
+  // GTM-ready event capture (no GTM yet — events log to dataLayer when wired)
+  window.dataLayer = window.dataLayer || [];
+  document.querySelectorAll('[data-event]').forEach(el => {
+    el.addEventListener('click', () => {
+      window.dataLayer.push({
+        event: el.dataset.event,
+        source: el.dataset.source || 'unknown',
+        variant: document.body.dataset.variant
+      });
+    });
+  });
+  document.querySelectorAll('form[data-event]').forEach(f => {
+    f.addEventListener('submit', e => {
+      e.preventDefault();
+      window.dataLayer.push({
+        event: f.dataset.event,
+        source: f.dataset.source || 'unknown',
+        variant: document.body.dataset.variant
+      });
+      alert('Demo form — wire to Web3Forms / Formspree / your CRM in production. Quote payload captured to dataLayer.');
+    });
+  });
+</script>
+</body>
+</html>
