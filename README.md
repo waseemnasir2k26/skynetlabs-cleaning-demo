@@ -2,6 +2,10 @@
 
 Speculative landing page for residential cleaning + Google LSA test campaign. Three design variants in a single HTML file with a sticky variant switcher (top-right). Client picks → polish → ship.
 
+## Status
+
+Last reviewed: September 2026 · release v2026.09
+
 ## Variants
 
 | | Axis | Vibe |
