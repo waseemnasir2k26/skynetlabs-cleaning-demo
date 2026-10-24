@@ -1,56 +1,21 @@
-# Sparkline — Seminole County Cleaning Demo
+# Sparkline, residential cleaning landing demo
 
-Speculative landing page for residential cleaning + Google LSA test campaign. Three design variants in a single HTML file with a sticky variant switcher (top-right). Client picks → polish → ship.
+Speculative landing page for a residential cleaning business in Seminole County, FL, built for a Google Local Services Ads test. Three design variants (Editorial, Cinematic, Minimal) in one HTML file with a variant switcher.
 
-## Status
+## What is wired
 
-Last reviewed: October 2026 · release v2026.10
+- Trust block laid out for LSA (license, insurance and Google Guaranteed slots are placeholders)
+- Service-area band, six service cards, process timeline, FAQ, mobile call bar
+- LocalBusiness JSON-LD
+- `dataLayer` events for GTM (`lead-form-submit`, `phone-click`, `quote-cta`) with source and variant
+- `noindex` on the demo
 
-## Variants
+Reviews, license number and prices are sample content. Replace them before launch.
 
-| | Axis | Vibe |
-|---|---|---|
-| **V1 · Editorial** | Cream + sage + claret accents · Fraunces serif · magazine grid | Premium, warm, residential |
-| **V2 · Cinematic** | Navy + electric mint · Space Grotesk · gradient orbs + Ken Burns | Modern, tech-forward, conversion-tuned |
-| **V3 · Minimal** | White + sky blue · brutalist grid · monospace + extrabold sans | Bold, confident, performance-marketing native |
+## Run it
 
-## What's wired
+Open `index.html` or deploy with Vercel. Design notes are in `docs/`.
 
-- Google LSA-ready trust block (license #, $2M insured, Google Guaranteed badge)
-- Service-area band (Lake Mary, Sanford, Oviedo, Winter Springs, Altamonte, Casselberry, Longwood, Heathrow)
-- Six service cards with flat pricing
-- 3-step process timeline
-- Verified-review carousel (6 unique testimonials per niche, no copy-paste)
-- 6-question FAQ accordion
-- Mobile sticky call bar
-- LocalBusiness + AggregateRating JSON-LD schema
-- `noindex,nofollow` (vercel.json header + meta + robots.txt)
-- All CTAs emit dataLayer events ready for GTM (`lead-form-submit`, `phone-click`, `quote-cta`) with `source` + `variant` attribution
+---
 
-## GTM wire-up (Phase 2)
-
-1. Drop GTM container snippet in `<head>`
-2. Trigger: Custom Event = `lead-form-submit` → GA4 conversion + LSA offline-conversion upload
-3. Trigger: Custom Event = `phone-click` → GA4 conversion + Google Ads call event
-4. Trigger: Custom Event = `quote-cta` → micro-conversion (engagement)
-5. Server-side container optional ($35/mo Stape) for clean iOS attribution
-
-## Stack
-
-Pure HTML + Tailwind CDN + vanilla JS. No build step. ~30 KB gzipped.
-
-## Local
-
-Open `index.html` in any browser. URL hashes (`#v1` `#v2` `#v3`) deep-link to a specific variant — share with the client to focus a review round.
-
-## Demo by
-
-[SkynetLabs](https://skynetjoe.com) · MIT
-
-## Work with SkynetLabs
-
-Built by [Waseem Nasir](https://www.skynetjoe.com/?utm_source=github&utm_medium=readme&utm_campaign=skynetlabs-cleaning-demo) at SkynetLabs — n8n + AI automation for small businesses.
-
-- Hire on Fiverr: https://www.fiverr.com/agencies/skynetjoellc
-- Hire on Upwork: https://www.upwork.com/freelancers/muhammadwaseemnasir
-- Book a free call: https://calendly.com/skynetlabs/schedule-a-free-consultation
+Demo built by SkynetLabs (https://skynetjoe.com).
